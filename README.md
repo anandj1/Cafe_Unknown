@@ -1,6 +1,7 @@
 # Cafe Unknown - Where Unknonws Meet
 
-![Cafe Image](cafe_final.jpg)
+<img src="cafe_final.jpg" alt="Cafe Image" width="300" height="50">
+
 
 ## Overview
 
