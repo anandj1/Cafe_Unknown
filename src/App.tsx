@@ -226,7 +226,7 @@ function App() {
                 repeatType: "reverse"
               }}
             >
-              <img src='./cafe_final.jpg' className='w-50 h-20  mx-auto'/>
+              <img src="./cafe-final.jpg"className='w-50 h-20  mx-auto'/>
             </motion.div>
             <h1 className="mt-6 text-5xl font-bold text-white">
               Cafe Unknown
