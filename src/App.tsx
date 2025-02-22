@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Coffee, Users, ChevronRight, Radius } from 'lucide-react';
+import { Coffee, Users, ChevronRight } from 'lucide-react';
 import { motion } from 'framer-motion';
 import MatchAnimation from './components/MatchAnimation';
 import { MatchMessages } from './components/MatchMessages';
@@ -65,7 +65,7 @@ function App() {
 
     try {
       if (formData.wantsToTalk) {
-        const response = await fetch('http://localhost:5000/api/users', {
+        const response = await fetch('https://cafe-unknown.onrender.com/api/users', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -82,7 +82,7 @@ function App() {
         setTableInfo(data);
       } else {
         setTableInfo({
-          tableNumber: Math.floor(Math.random() * 50) + 1,
+          tableNumber: Math.floor(Math.random() * 20) + 1,
           hasMatch: false,
           message: MESSAGES.PRIVATE_TABLE()
         });
@@ -226,7 +226,7 @@ function App() {
                 repeatType: "reverse"
               }}
             >
-              <img src='/cafe_final.jpg' className='w-20 h-20 rounded-full  mx-auto' />
+              <img src='/cafe_final.jpg' className='w-70 h-20  mx-auto'/>
             </motion.div>
             <h1 className="mt-6 text-5xl font-bold text-white">
               Cafe Unknown
