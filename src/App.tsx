@@ -149,7 +149,7 @@ function App() {
     setStep(0);
     setFormData({
       name: '',
-      age: 0,
+      age: 18,
       gender: '',
       avatar: AVATARS[0],
       bio: '',
