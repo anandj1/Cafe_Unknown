@@ -133,30 +133,15 @@ function App() {
   const handleInitialChoice = (wantsToTalk: boolean) => {
     setFormData(prev => ({ ...prev, wantsToTalk }));
     if (!wantsToTalk) {
-      // Make API call instead of generating random number client-side
-      fetch('https://cafe-unknown.onrender.com/api/users', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          ...formData,
-          wantsToTalk: false
-        }),
-      })
-      .then(response => response.json())
-      .then(data => {
-        setTableInfo(data);
-      })
-      .catch(error => {
-        console.error('Error:', error);
-        setError(error instanceof Error ? error.message : MESSAGES.ERROR.NETWORK_ERROR);
+      setTableInfo({
+        tableNumber: Math.floor(Math.random() * 20) + 1,
+        hasMatch: false,
+        message: MESSAGES.PRIVATE_TABLE()
       });
     } else {
       setStep(1);
     }
   };
-
 
   const handleReset = () => {
     setTableInfo(null);
