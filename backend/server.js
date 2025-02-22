@@ -129,18 +129,21 @@ const findMatch = async (user) => {
 };
 
 const getTableNumber = async () => {
+  const MAX_TABLES = 20;
   const usedTables = await User.distinct('tableNumber');
-  let tableNum = Math.floor(Math.random() * 20) + 1;
   
-  for (let attempts = 0; attempts < 20; attempts++) {
-    if (!usedTables.includes(tableNum)) {
-      return tableNum;
-    }
-    tableNum = Math.floor(Math.random() * 20) + 1;
+  // Create an array of available table numbers (1-20)
+  const availableTables = Array.from({ length: MAX_TABLES }, (_, i) => i + 1)
+    .filter(num => !usedTables.includes(num));
+  
+  if (availableTables.length > 0) {
+    // If there are available tables, randomly select one
+    return availableTables[Math.floor(Math.random() * availableTables.length)];
   }
   
+  // If all tables are taken, find the oldest user's table
   const oldestUser = await User.findOne().sort({ createdAt: 1 });
-  return oldestUser ? oldestUser.tableNumber : Math.floor(Math.random() * 20) + 1;
+  return oldestUser ? oldestUser.tableNumber : 1;
 };
 
 // Custom messages for solo tables
@@ -212,8 +215,17 @@ app.post('/api/users', async (req, res) => {
         });
       }
     } else {
+      // For solo tables, use the same getTableNumber function to ensure it's within 1-20
+      const soloTableNumber = await getTableNumber();
+      const user = new User({
+        ...userData,
+        tableNumber: soloTableNumber,
+        isWaiting: false
+      });
+      await user.save();
+      
       res.json({ 
-        tableNumber, 
+        tableNumber: soloTableNumber, 
         hasMatch: false,
         message: getRandomSoloTableMessage()
       });
