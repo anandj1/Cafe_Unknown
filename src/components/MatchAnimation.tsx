@@ -50,7 +50,7 @@ const FloatingHeart = ({ delay = 0, scale = 1 }) => (
 );
 
 const MatchAnimation: React.FC<MatchAnimationProps> = ({ isVisible, message }) => {
-  const [playMatchSound] = useSound('https://assets.codepen.io/189524/match-sound.mp3', { volume: 5 });
+  const [playMatchSound] = useSound('https://assets.codepen.io/189524/match-sound.mp3', { volume: 70 });
 
   useEffect(() => {
     if (isVisible) {
@@ -106,7 +106,7 @@ const MatchAnimation: React.FC<MatchAnimationProps> = ({ isVisible, message }) =
                 }}
                 className="text-center"
               >
-                <h2 className="text-5xl font-bold bg-gradient-to-r from-pink-500 via-purple-500 to-indigo-500 bg-clip-text text-transparent mb-4 filter drop-shadow-lg">
+                <h2 className="text-3xl font-bold bg-gradient-to-r from-pink-500 via-purple-500 to-indigo-500 bg-clip-text text-transparent mb-4 filter drop-shadow-lg">
                   {message}
                 </h2>
                 <motion.p
